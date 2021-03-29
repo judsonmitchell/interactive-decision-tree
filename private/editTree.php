@@ -119,7 +119,7 @@ function showTreeForm( $tree, $selectedRevision ){
     <?php
 		foreach( $tree->revisions as $revision ){
 			$selectedHTML = '';
-			$revisionParts = split( '\.', $revision );
+			$revisionParts = explode( '\.', $revision );
 			$revisionTS = array_pop( $revisionParts );
 			$revisionTime = date( 'D M jS, Y g:i a T', $revisionTS );
 			if( $revisionTS == $selectedRevision ){
@@ -226,7 +226,7 @@ function saveBranch( $tree ){
 	foreach( $_POST as $formField => $formValue ){
 		if( substr( $formField, 0, 5 ) == 'fork-' ){
 			// get forkID from field name
-			$fieldParts = split( '-', $formField );
+			$fieldParts = explode( '-', $formField );
 			$forkID = str_replace( '_', '.', $fieldParts[1]);
 			array_push( $passedForks, $forkID );
 			$branch->forks[$forkID] = $formValue;
